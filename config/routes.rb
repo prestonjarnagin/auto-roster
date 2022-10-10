@@ -3,4 +3,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  jsonapi_resources :teams, only: %i[create] do
+    jsonapi_resources :players, only: %i[create]
+  end
 end
