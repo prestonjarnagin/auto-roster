@@ -38,6 +38,8 @@ gem "bootsnap", require: false
 
 group :development, :test do
   gem "pry"
+  gem "factory_bot"
+  gem "rspec-rails"
 end
 
 group :development do
