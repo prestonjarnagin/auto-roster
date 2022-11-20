@@ -4,19 +4,39 @@ class PlayersController < ApplicationController
 
     head :not_found unless team
 
-    player = Player.new(player_params)
-    player.team = team
+    players = bulk_create(team)
 
-    head :unprocessable_entity unless player.save
-
-    render json: player.to_json, status: :created
+    render json: players.to_json, status: :created
   end
 
   private
 
-  def player_params
-    {
-      name: params.require(:data).require(:attributes).permit(:name)
-    }
+  def bulk_create(team)
+    player_datum = data.map do |player_data|
+      player_data.require(:attributes).permit(:name).deep_transform_keys(&:underscore)
+    end
+
+    created_players = player_datum.map do |player_data|
+      player = Player.new(player_data)
+      player.team = team
+      player
+    end
+
+    
+    if created_players.all?(&:valid?)
+      created_players.each(&:save)
+      return created_players
+    else
+      head :unprocessable_entity unless player.save
+      return false
+    end
+  end
+
+  def data
+    params.require('bulk:data')
+  end
+
+  def players_valid?(players)
+
   end
 end
