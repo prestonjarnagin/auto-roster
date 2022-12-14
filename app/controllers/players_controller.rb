@@ -9,6 +9,16 @@ class PlayersController < ApplicationController
     render json: players.to_json, status: :created
   end
 
+  def index
+    team = Team.find(params[:team_id])
+
+    head :not_found unless team
+
+    players = team.players
+
+    render json: players.to_json, status: :ok
+  end
+
   private
 
   def bulk_create(team)
@@ -22,7 +32,7 @@ class PlayersController < ApplicationController
       player
     end
 
-    
+
     if created_players.all?(&:valid?)
       created_players.each(&:save)
       return created_players

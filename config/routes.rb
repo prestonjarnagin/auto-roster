@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :teams, only: %i[create show] do
-    resources :players, only: %i[create]
+    resources :players, only: %i[create index]
   end
 
   resources :player_position_preferences, only: %i[create],

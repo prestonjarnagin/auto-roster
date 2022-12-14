@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
   def create
     team = Team.new(name: team_params[:name])
 
-    head :unprocessable_entity unless team.save
+    return head :unprocessable_entity unless team.save
 
     render json: team.to_json, status: :created
   end
@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
   def show
     team = Team.find_by(id: params[:id])
 
-    head :not_found unless team
+    return head :not_found unless team
 
     render json: team.to_json, status: :ok
   end

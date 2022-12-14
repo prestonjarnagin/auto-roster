@@ -36,16 +36,20 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-gem "rack-cors"
+gem 'rack-cors'
 
 group :development, :test do
   gem 'faker'
-  gem 'pry'
   gem 'factory_bot_rails'
+  gem 'pry'
   gem 'rspec-rails'
 end
 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  # gem 'spring'
 end
+
+gem 'jwt', '~> 2.5'
+
+gem "bcrypt", "~> 3.1"
