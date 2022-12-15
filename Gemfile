@@ -42,6 +42,7 @@ end
 gem 'bcrypt', '~> 3.1'
 gem 'bootsnap', require: false
 gem 'devise', '~> 4.8'
+gem 'devise-jwt', '~> 0.10'
 gem 'jsonapi-resources'
 gem 'jwt', '~> 2.5'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
