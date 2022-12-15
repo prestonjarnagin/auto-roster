@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateInnings < ActiveRecord::Migration[7.0]
   def change
     create_table :innings, id: :uuid do |t|

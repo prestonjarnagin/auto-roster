@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTeamPositionPreferences < ActiveRecord::Migration[7.0]
   def change
     create_table :team_position_preferences, id: :uuid do |t|
